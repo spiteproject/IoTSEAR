@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/IoTSEAR"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/test"/>
+	</contentEntry>
+	<lib name="java-semver-0.9.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/java-semver-0.9.0.jar!/"/>
+	</lib>
+	<lib name="pf4j-3.2.0.jar" scope="COMPILE">
+		<srcroot url="jar://$MODULE_DIR$/lib/pf4j-3.2.0-sources.jar!/"/>
+		<relative-module-src project-related="jar://$PROJECT_DIR$/lib/pf4j-3.2.0-sources.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/pf4j-3.2.0.jar!/"/>
+	</lib>
+	<lib name="protobuf-java-3.10.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/protobuf-java-3.10.0.jar!/"/>
+	</lib>
+	<lib name="json-simple-1.1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/json-simple-1.1.1.jar!/"/>
+	</lib>
+	<lib name="json-20190722.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/json-20190722.jar!/"/>
+	</lib>
+	<lib name="$MODULE_DIR$/lib/protobuf-java-3.10.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/protobuf-java-3.10.0.jar!/"/>
+	</lib>
+	<lib name="$MODULE_DIR$/lib/pf4j-3.2.0.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/pf4j-3.2.0.jar!/"/>
+	</lib>
+	<lib name="pf4j-3.2.0-sources.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/pf4j-3.2.0-sources.jar!/"/>
+	</lib>
+	<lib name="jsr305-3.0.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jsr305-3.0.1.jar!/"/>
+	</lib>
+	<lib name="flogger-0.4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/flogger-0.4.jar!/"/>
+	</lib>
+	<lib name="flogger-system-backend-0.4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/flogger-system-backend-0.4.jar!/"/>
+	</lib>
+	<lib name="flogger-slf4j-backend-0.4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/flogger-slf4j-backend-0.4.jar!/"/>
+	</lib>
+	<lib name="slf4j-api-1.7.30.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.30.jar!/"/>
+	</lib>
+	<lib name="slf4j-simple-1.6.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/slf4j-simple-1.6.2.jar!/"/>
+	</lib>
+	<lib name="hamcrest-core-1.1.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/hamcrest-core-1.1.jar!/"/>
+	</lib>
+	<lib name="junit-4.10-javadoc.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-4.10-javadoc.jar!/"/>
+	</lib>
+	<lib name="slf4j-api-1.7.25.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.25.jar!/"/>
+	</lib>
+	<lib name="org.eclipse.paho.client.mqttv3-1.2.2.jar" scope="COMPILE">
+		<srcroot url="jar://$USER_HOME$/.ideaLibSources/org.eclipse.paho.client.mqttv3-1.2.2-sources.jar!/"/>
+	</lib>
+	<levels>
+		<level name="com.google.flogger:flogger:0.4" value="project"/>
+		<level name="com.google.flogger:flogger-system-backend:0.4" value="project"/>
+		<level name="Simple Logging Facade for Java:1.6.2" value="project"/>
+		<level name="com.googlecode.json-simple:json-simple:1.1.1" value="project"/>
+	</levels>
+</component>

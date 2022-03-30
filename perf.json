@@ -1,0 +1,104 @@
+{
+  "pbms": {
+    "repository": {
+      "provider": "iotsear:pbms:directory-based-policy-repository",
+      "path": "./testPolicies/",
+      "cache": true,
+      "parser": "iotsear:pbms:darcJsonParser"
+    },
+    "pdp": "iotsear:pbms:localPDP",
+    "context-persistence": {
+      "provider": "iotsear:contextStore:memory"
+    }
+  },
+  "gateway": {
+    "proof-generation": {
+      "provider": "sha256withRSA2048",
+      "key": "./privatekey.pem"
+    }
+  },
+  "sources": [
+    {
+      "provider": "sources:mock",
+      "identifier": "House Proximity Sensor",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/proximity",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "presence"
+      }
+    },
+    {
+      "provider": "sources:mock",
+      "identifier": "RFID reader",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/rfid",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "identity"
+      }
+    },
+    {
+      "provider": "sources:mock",
+      "identifier": "Nurse#123's Smartphone",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "provider-": "demo:pbms:smartphoneHandler",
+        "topic": "myApp/smartphone",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "identity",
+        "proofSupport": [
+          "iotsear:crypto:hmac:HmacSHA256"
+        ]
+      }
+    },
+    {
+      "provider": "sources:mock",
+      "identifier": "House Smart Lock",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/doorbell",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "smartLock"
+      }
+    },
+    {
+      "provider": "sources:mock",
+      "identifier": "myLightSensor",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/light",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "light"
+      }
+    },
+    {
+      "provider": "sources:mock",
+      "identifier": "hospitalIDP",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/hospitalIDP",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "authenticity"
+      }
+    }
+  ]
+}

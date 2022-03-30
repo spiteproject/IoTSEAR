@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project IoTSEAR">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="/Users/andreasp/eclipse-workspace"/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/iotsear.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="be.distrinet.spite.iotsear.IoTSEAR"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.jupiter.api_5.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.jupiter.engine_5.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.jupiter.params_5.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.platform.commons_1.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.platform.engine_1.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.platform.launcher_1.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.platform.runner_1.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.platform.suite.api_1.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit.vintage.engine_5.6.0.v20200203-2009.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+            <fileset dir="${dir.jarfile}/out/production/IoTSEAR"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/java-semver-0.9.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/pf4j-3.2.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/pf4j-3.2.0-sources.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/jsr305-3.0.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/flogger-slf4j-backend-0.4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/slf4j-api-1.7.30.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/slf4j-simple-1.6.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/hamcrest-core-1.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/junit-4.10-javadoc.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/Users/andreasp/Documents/projects/MQTT-context-mocker/lib/org.eclipse.paho.client.mqttv3-1.2.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/flogger-0.4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/json-simple-1.1.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/protobuf-java-3.10.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/flogger-system-backend-0.4.jar"/>
+        </jar>
+    </target>
+</project>

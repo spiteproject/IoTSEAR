@@ -1,0 +1,18 @@
+{
+  "identifier": "doorPolicy",
+  "priority": 3,
+  "target": {
+    "subject": "AnySubject",
+    "resource": "home:front-door",
+    "action": "open"
+  },
+  "effect": "allow",
+  "condition": {
+    "source": "RFID reader",
+    "operation": "darc:condition:operation:equals",
+    "value": "5463",
+    "verifiers": [
+      "darc:condition:verifier:freshness:30s"
+    ]
+  }
+}

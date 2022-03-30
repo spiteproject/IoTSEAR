@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>docu.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="iotsear">IoTSEAR</h1>
+<h2 id="iotsear-usage">IoTSEAR usage</h2>
+<p>In order to use/compile, you need to import only the IoTSEAR.jar as a dependency.<br>
+However, to run the program, you'll need to include all other jar files in the classpath.</p>
+<p>Using IoTSEAR in a program is fairly easy and straightforward,
+however, it does rely on a lot of configuration settings, which are specified in a separate config file.</p>
+<h2 id="examples--important-api">Examples &amp; important API</h2>
+<h3 id="iotsear">IoTSEAR</h3>
+<p>This is a singleton object which gives access to the important IoTSEAR components:</p>
+<ul>
+<li>PolicyEngine: responsible for evaluating policies</li>
+<li>PolicyRepository</li>
+<li>ContextStore</li>
+</ul>
+<pre class="hljs"><code><div>IoTSEAR ioTSEAR = IoTSEAR.getInstance();
+ioTSEAR.configure(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"./IoTSEAR.json"</span>));
+<span class="hljs-comment">//ContextStorage store = iotSEAR.getContextStore();</span>
+<span class="hljs-comment">//PolicyRepository repo = iotSEAR.getPolicyRepository();</span>
+PolicyEngine engine = ioTSEAR.getPolicyEngine();
+AuthorizationPolicy.PolicyEffect effect = engine.enforce(<span class="hljs-string">"anysubject"</span>,
+                                                        <span class="hljs-string">"anyresource"</span>,
+                                                        <span class="hljs-string">"anyaction"</span>);
+</div></code></pre>
+<p>Below is a configuration example of &quot;./IoTSEAR.json&quot;:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"pbms"</span>: {
+    <span class="hljs-attr">"repository"</span>: {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"iotsear:pbms:directory-based-policy-repository"</span>,
+      <span class="hljs-attr">"path"</span>: <span class="hljs-string">"./testPolicies/"</span>,
+      <span class="hljs-attr">"cache"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"parser"</span>: <span class="hljs-string">"iotsear:pbms:darcJsonParser"</span>
+    },
+    <span class="hljs-attr">"pdp"</span>: <span class="hljs-string">"iotsear:pbms:localPDP"</span>,
+    <span class="hljs-attr">"context-persistence"</span>: {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"iotsear:contextStore:memory"</span>
+    }
+  },
+  <span class="hljs-attr">"sources"</span>: [
+    {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"sources:mock"</span>,
+      <span class="hljs-attr">"identifier"</span>: <span class="hljs-string">"myProximitySensor"</span>,
+      <span class="hljs-attr">"contextHandler"</span>: {
+        <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"iotsear:pbms:mqttReceiver"</span>,
+        <span class="hljs-attr">"topic"</span>: <span class="hljs-string">"myApp/proximity"</span>,
+        <span class="hljs-attr">"broker"</span>: <span class="hljs-string">"tcp://localhost:1883"</span>,
+        <span class="hljs-attr">"decoder"</span>: <span class="hljs-string">"iotsear:context:encoders:string-encoder-decoder"</span>
+      },
+      <span class="hljs-attr">"metadata"</span>: {
+        <span class="hljs-attr">"contextType"</span>: <span class="hljs-string">"presence"</span>,
+        <span class="hljs-attr">"proofSupport"</span>: [
+          <span class="hljs-string">"iotsear:crypto:hash:sha256"</span>,
+          <span class="hljs-string">"iotsear:crypto:sign:rsa2048"</span>
+        ]
+      }
+    },
+    {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"sources:mock"</span>,
+      <span class="hljs-attr">"identifier"</span>: <span class="hljs-string">"myDoorbell"</span>,
+      <span class="hljs-attr">"contextHandler"</span>: {
+        <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"iotsear:pbms:mqttReceiver"</span>,
+        <span class="hljs-attr">"topic"</span>: <span class="hljs-string">"myApp/doorbell"</span>,
+        <span class="hljs-attr">"broker"</span>: <span class="hljs-string">"tcp://localhost:1883"</span>,
+        <span class="hljs-attr">"decoder"</span>: <span class="hljs-string">"iotsear:context:encoders:string-encoder-decoder"</span>
+      },
+      <span class="hljs-attr">"metadata"</span>: {
+        <span class="hljs-attr">"contextType"</span>: <span class="hljs-string">"presence"</span>
+      }
+    },
+    {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"sources:mock"</span>,
+      <span class="hljs-attr">"identifier"</span>: <span class="hljs-string">"myLightSensor"</span>,
+      <span class="hljs-attr">"contextHandler"</span>: {
+        <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"iotsear:pbms:mqttReceiver"</span>,
+        <span class="hljs-attr">"topic"</span>: <span class="hljs-string">"myApp/light"</span>,
+        <span class="hljs-attr">"broker"</span>: <span class="hljs-string">"tcp://localhost:1883"</span>,
+        <span class="hljs-attr">"decoder"</span>: <span class="hljs-string">"iotsear:context:encoders:string-encoder-decoder"</span>
+      },
+      <span class="hljs-attr">"metadata"</span>: {
+        <span class="hljs-attr">"contextType"</span>: <span class="hljs-string">"light"</span>
+      }
+    }
+  ]
+}
+</div></code></pre>
+<p>All strings with the following structure: &quot;x:y:z:...&quot; identify framework plugins.
+It is possible to create your own plugins, or extend existing ones, and make IoTSEAR load them
+by changing these identifiers. This process will be explained later on.</p>
+<p>It is probably not necessary to change the 'pbms' section.</p>
+<p>The 'devices' section, however, should be different for each application. Some things to note:</p>
+<ol>
+<li>each identifier must be unique</li>
+<li>w.r.t. the mqttReceiver: it is important that each device uses a different topic.</li>
+<li>sources should have a 'contextType' metadata-property. This is used for ContextAttribute.getType()</li>
+</ol>
+<h3 id="contextattribute">ContextAttribute</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">//constructor</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ContextAttribute</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String type, <span class="hljs-keyword">final</span> String value)</span></span>;
+<span class="hljs-comment">/**
+* Gets the value of this attribute.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getValue</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">/**
+* Returns the type of this context attribute.
+* This is derived from the source-type if the source of this attribute has been set.
+*
+* <span class="hljs-doctag">@return</span> this attribute's type, or an empty string if the attribute type is not known.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getType</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">putMetaData</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String type, <span class="hljs-keyword">final</span> String value)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getMetaData</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String type)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">getTimestamp</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setTimestamp</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> timestamp)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, String&gt; <span class="hljs-title">getMetaData</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">/**
+* Gets the source/device that is associated with this context attribute,
+* or null if the source is not known/set.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ContextSource <span class="hljs-title">getSource</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSource</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ContextSource source)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> Subject <span class="hljs-title">getSubject</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSubject</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Subject subject)</span></span>;
+</div></code></pre>
+<h3 id="contextsource">ContextSource</h3>
+<p>The context-source represents the device which produced a context-reading. The ContextSource class is a framework extension point. One extension is available as a system provider: MockDevice<br>
+Each ContextSource has a ContextHandler, which is responsible for accessing the device itself/retrieving the context. ContextHandler is also a framework extension point, and one extension is available as system provider: MqttContextHandler. This handler will automatically add context to the configured IoTSEAR-contextstore</p>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+* attempts to retrieve source output.
+* this method is asynchronous. The configured listeners will be notified when the source responds.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">retrieveContext</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-comment">/**
+* attempts to retrieve source output.
+* this method is asynchronous. ONLY the provided listener will be notified when the source responds.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">retrieveContext</span><span class="hljs-params">(ContextListener listener)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">putMetaData</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String type, <span class="hljs-keyword">final</span> String value)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getMetaData</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String type)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, String&gt; <span class="hljs-title">getMetaData</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getIdentifier</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getSourceType</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSourceType</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String type)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getProviderID</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">/**
+* factory method to create a new Context Source object from the IoTSEAR configuration
+*
+* <span class="hljs-doctag">@param</span> json
+* <span class="hljs-doctag">@return</span>
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ContextSource <span class="hljs-title">createSource</span><span class="hljs-params">(JSONObject json)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setContextHandler</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ContextHandler handler)</span></span>;
+<span class="hljs-comment">/**
+* add a listener that will be called when context from this device is received.
+*
+* <span class="hljs-doctag">@param</span> listener
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addContextListener</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ContextListener listener)</span></span>;
+</div></code></pre>
+<p>A ContextListener is a simple callback which can be added to a ContextSource with ContextSource.addContextListener(listener).</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ContextListener</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processContext</span><span class="hljs-params">(ContextAttribute attribute)</span></span>;
+}
+</div></code></pre>
+<h3 id="contextmanager">ContextManager</h3>
+<p>in package: be.distrinet.spite.iotsear.managers<br>
+This is an important plugin-manager which manages context-sources, context-stores, context-handlers and encoders-decoders.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ContextManager <span class="hljs-title">getInstance</span><span class="hljs-params">()</span>
+
+<span class="hljs-keyword">public</span> ContextSource <span class="hljs-title">getSource</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String identifier)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;ContextSource&gt; <span class="hljs-title">getSourcesByType</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String type)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> ContextStorage <span class="hljs-title">getContextStore</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String providerID)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> ContextHandler <span class="hljs-title">getContextHandler</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String providerID)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> ContextEncoder <span class="hljs-title">getEncoder</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String providerID)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">public</span> ContextDecoder <span class="hljs-title">getDecoder</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String providerID)</span></span>;
+</div></code></pre>
+<h3 id="contextstore">ContextStore</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+ * Store a context attribute in this storage
+ *
+ * <span class="hljs-doctag">@param</span> attribute the context attribute
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">store</span><span class="hljs-params">(ContextAttribute attribute)</span></span>;
+
+<span class="hljs-comment">/**
+ * Delete the attributes that match with the given selector from this storage
+ *
+ * <span class="hljs-doctag">@param</span> selector
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">prune</span><span class="hljs-params">(ContextSelector selector)</span></span>;
+
+<span class="hljs-comment">/**
+ * Find the list of contextattributes given the context selector
+ */</span>
+<span class="hljs-function">List&lt;ContextAttribute&gt; <span class="hljs-title">find</span><span class="hljs-params">(ContextSelector selector)</span></span>;
+
+<span class="hljs-comment">/**
+ * Find the list of contextattributes given the subject-identifier
+ */</span>
+<span class="hljs-function">List&lt;ContextAttribute&gt; <span class="hljs-title">findBySubject</span><span class="hljs-params">(String subjectID)</span></span>;
+
+<span class="hljs-comment">/**
+ * Find the list of contextattributes given the source-identifier
+ */</span>
+<span class="hljs-function">List&lt;ContextAttribute&gt; <span class="hljs-title">findBySource</span><span class="hljs-params">(String sourceID)</span></span>;
+
+<span class="hljs-comment">/**
+ * Find the list of contextattributes given the source-type
+ */</span>
+<span class="hljs-function">List&lt;ContextAttribute&gt; <span class="hljs-title">findBySourceType</span><span class="hljs-params">(String SourceType)</span></span>;
+</div></code></pre>
+<p>At time of writing, the only context-store is an in-memory store --&gt; the context-attributes
+are lost when the app restarts.
+The prune method is not implemented.</p>
+<p>One that depends on a database-backend is being worked on.</p>
+<h3 id="policyrepository">PolicyRepository</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">/**
+     * Retrieve a specific policy
+     *
+     * <span class="hljs-doctag">@param</span> policyID the identifier of the desired policy
+     * <span class="hljs-doctag">@return</span> the policy, or null if it is not found
+     */</span>
+    <span class="hljs-function">AuthorizationPolicy <span class="hljs-title">retrievePolicy</span><span class="hljs-params">(String policyID)</span></span>;
+
+    <span class="hljs-comment">/**
+     * Retrieve the list of all policy-identifiers in this repository
+     */</span>
+    <span class="hljs-function">List&lt;String&gt; <span class="hljs-title">getAllPolicyIDs</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-comment">/**
+     * Retrieve all policies in this repository
+     *
+     * <span class="hljs-doctag">@return</span> the list of all policies in this repository
+     */</span>
+    <span class="hljs-function">List&lt;AuthorizationPolicy&gt; <span class="hljs-title">retrievePolicies</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-comment">/**
+     * Store a new policy in this repository.
+     * This operation will not succeed if a policy with the same identifier is already present (see #storePolicy)
+     *
+     * <span class="hljs-doctag">@param</span> policy the policy
+     * <span class="hljs-doctag">@return</span> true if the operation succeeds, false otherwise.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">storePolicy</span><span class="hljs-params">(AuthorizationPolicy policy)</span></span>;
+
+    <span class="hljs-comment">/**
+     * Update an existing policy in this repository.
+     * This operation will not succeed if this repository does not already contain a policy with the same identifier.
+     *
+     * <span class="hljs-doctag">@param</span> policy the policy
+     * <span class="hljs-doctag">@return</span> true if the operation succeeds, false otherwise.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">updatePolicy</span><span class="hljs-params">(AuthorizationPolicy policy)</span></span>;
+
+    <span class="hljs-comment">/**
+     * Delete an existing policy in this repository
+     *
+     * <span class="hljs-doctag">@param</span> policyID the identifier of the policy that should be deleted
+     * <span class="hljs-doctag">@return</span> true if the operation succeeds, false otherwise.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">deletePolicy</span><span class="hljs-params">(String policyID)</span></span>;
+
+</div></code></pre>
+<p>There is one provider implemented at the moment: A directory-based repository.<br>
+store, update &amp; delete is not implemented at the moment, but these features have a high priority...</p>
+<p>IMPORTANT: THE FILENAMES MUST CORRESPOND TO [policyID].json</p>
+<h2 id="policies">Policies</h2>
+<p>example:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"identifier"</span>: <span class="hljs-string">"myPolicy3"</span>,
+  <span class="hljs-attr">"priority"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"target"</span>: {
+    <span class="hljs-attr">"subject"</span>: <span class="hljs-string">"AnySubject"</span>,
+    <span class="hljs-attr">"resource"</span>: <span class="hljs-string">"AnyResource"</span>,
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"AnyAction"</span>
+  },
+  <span class="hljs-attr">"effect"</span>: <span class="hljs-string">"allow"</span>,
+  <span class="hljs-attr">"condition"</span>: {
+    <span class="hljs-attr">"darc:condition:and"</span>: [
+      {
+        <span class="hljs-attr">"source"</span>: <span class="hljs-string">"myDoorbell"</span>,
+        <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:equals"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-string">"1"</span>,
+        <span class="hljs-attr">"verifiers"</span>: [<span class="hljs-string">"darc:condition:verifier:freshness:30s"</span>]
+      },
+      {
+        <span class="hljs-attr">"source"</span>: <span class="hljs-string">"presence"</span>,
+        <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:equals"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-string">"1"</span>,
+        <span class="hljs-attr">"verifiers"</span>: [
+          <span class="hljs-string">"darc:condition:verifier:freshness:30s"</span>,
+          <span class="hljs-string">"darc:condition:verifier:security:substantial"</span>
+        ]
+      },
+      {
+        <span class="hljs-attr">"darc:condition:or"</span>: [
+          {
+            <span class="hljs-attr">"source"</span>: <span class="hljs-string">"mySensorID1"</span>,
+            <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:lt"</span>,
+            <span class="hljs-attr">"value"</span>: <span class="hljs-string">"5"</span>,
+            <span class="hljs-attr">"verifiers"</span>: [<span class="hljs-string">"darc:condition:verifier:freshness:30s"</span>]
+          },
+          {
+            <span class="hljs-attr">"source"</span>: <span class="hljs-string">"mySensorID2"</span>,
+            <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:geq"</span>,
+            <span class="hljs-attr">"value"</span>: <span class="hljs-string">"4"</span>,
+            <span class="hljs-attr">"verifiers"</span>: [<span class="hljs-string">"darc:condition:verifier:freshness:1m"</span>]
+          }
+        ]
+      }
+    ]
+  }
+}
+</div></code></pre>
+<p>example with comments:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"identifier"</span>: <span class="hljs-string">"myPolicy3"</span>, <span class="hljs-comment">//identifiers should be unique</span>
+  <span class="hljs-attr">"priority"</span>: <span class="hljs-number">2</span>, <span class="hljs-comment">//a lower number corresponds to a higher priority. 0 is the highest priority possible.</span>
+  <span class="hljs-attr">"target"</span>: {
+    <span class="hljs-attr">"subject"</span>: <span class="hljs-string">"AnySubject"</span>, <span class="hljs-comment">//if the person is not yet authenticated, subject=AnySubject</span>
+    <span class="hljs-attr">"resource"</span>: <span class="hljs-string">"AnyResource"</span>, <span class="hljs-comment">//AnyResource --&gt; wildcard</span>
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"AnyAction"</span> <span class="hljs-comment">//AnyAction --&gt; wildcard</span>
+  },
+  <span class="hljs-attr">"effect"</span>: <span class="hljs-string">"allow"</span>, <span class="hljs-comment">//(allow/deny) IoTSEAR is default-deny, so most of the policies should allow</span>
+  <span class="hljs-attr">"condition"</span>: {
+    <span class="hljs-comment">//A condition is either one single condition-object, or an and/or condition-array.</span>
+    <span class="hljs-comment">//Each element in these arrays are either a condition-object or a new and/or condition-array.</span>
+    <span class="hljs-attr">"darc:condition:and"</span>: [
+      {
+        <span class="hljs-attr">"source"</span>: <span class="hljs-string">"myDoorbell"</span>, <span class="hljs-comment">//the source is either the source-identifier, or a source-type</span>
+        <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:equals"</span>, <span class="hljs-comment">//the operation is a plugin-identifier</span>
+        <span class="hljs-attr">"value"</span>: <span class="hljs-string">"1"</span>, <span class="hljs-comment">//all values are encoded as strings</span>
+        <span class="hljs-attr">"verifiers"</span>: [
+          <span class="hljs-string">"darc:condition:verifier:freshness:30s"</span> <span class="hljs-comment">//multiple verifiers can be defined here</span>
+        ]
+      },
+      {
+        <span class="hljs-attr">"source"</span>: <span class="hljs-string">"presence"</span>,
+        <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:equals"</span>,
+        <span class="hljs-attr">"value"</span>: <span class="hljs-string">"1"</span>,
+        <span class="hljs-attr">"verifiers"</span>: [
+          <span class="hljs-string">"darc:condition:verifier:freshness:30s"</span>,
+          <span class="hljs-string">"darc:condition:verifier:security:substantial"</span>
+          <span class="hljs-comment">//darc:condition:verifier:security:substantial is a custom verifier, it is not provided by default in IoTSEAR</span>
+        ]
+      },
+      {
+        <span class="hljs-attr">"darc:condition:or"</span>: [
+          {
+            <span class="hljs-attr">"source"</span>: <span class="hljs-string">"mySensorID1"</span>,
+            <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:lt"</span>,
+            <span class="hljs-attr">"value"</span>: <span class="hljs-string">"5"</span>,
+            <span class="hljs-attr">"verifiers"</span>: [<span class="hljs-string">"darc:condition:verifier:freshness:30s"</span>]
+          },
+          {
+            <span class="hljs-attr">"source"</span>: <span class="hljs-string">"mySensorID2"</span>,
+            <span class="hljs-attr">"operation"</span>: <span class="hljs-string">"darc:condition:operation:geq"</span>,
+            <span class="hljs-attr">"value"</span>: <span class="hljs-string">"4"</span>,
+            <span class="hljs-attr">"verifiers"</span>: [<span class="hljs-string">"darc:condition:verifier:freshness:1m"</span>]
+          }
+        ]
+      }
+    ]
+  }
+}
+</div></code></pre>
+<h2 id="extensions">Extensions</h2>
+<p>IoTSEAR is intended to be extended by the application, however, several default providers are available:</p>
+<table>
+<thead>
+<tr>
+<th>identifier</th>
+<th>Class</th>
+<th>Extension Point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>darc:condition:and</td>
+<td>ConditionSetAND</td>
+<td>PolicyConditionSet &amp; PolicyConditionSetFactory</td>
+</tr>
+<tr>
+<td>darc:condition:or</td>
+<td>ConditionSetOR</td>
+<td>PolicyConditionSet &amp; PolicyConditionSetFactory</td>
+</tr>
+<tr>
+<td>darc:condition:verifier:freshness:30s</td>
+<td>FreshnessVerifier30s</td>
+<td>PolicyConditionVerifier &amp; PolicyConditionVerifierFactory</td>
+</tr>
+<tr>
+<td>darc:condition:verifier:freshness:1m</td>
+<td>FreshnessVerifier1m</td>
+<td>PolicyConditionVerifier &amp; PolicyConditionVerifierFactory</td>
+</tr>
+<tr>
+<td>darc:condition:verifier:freshness:5m</td>
+<td>FreshnessVerifier5m</td>
+<td>PolicyConditionVerifier &amp; PolicyConditionVerifierFactory</td>
+</tr>
+<tr>
+<td>darc:condition:operation:equals</td>
+<td>EqualityOperation</td>
+<td>PolicyConditionOperation &amp; PolicyConditionOperationFactory</td>
+</tr>
+<tr>
+<td>darc:condition:operation:geq</td>
+<td>GreaterThanOrEqualsOperation</td>
+<td>PolicyConditionOperation &amp; PolicyConditionOperationFactory</td>
+</tr>
+<tr>
+<td>darc:condition:operation:gt</td>
+<td>GreatherThanOperation</td>
+<td>PolicyConditionOperation &amp; PolicyConditionOperationFactory</td>
+</tr>
+<tr>
+<td>darc:condition:operation:lt</td>
+<td>LessThanOperation</td>
+<td>PolicyConditionOperation &amp; PolicyConditionOperationFactory</td>
+</tr>
+<tr>
+<td>darc:condition:operation:leq</td>
+<td>LessThanOrEqualsOperation</td>
+<td>PolicyConditionOperation &amp; PolicyConditionOperationFactory</td>
+</tr>
+<tr>
+<td>iotsear:contextStore:memory</td>
+<td>ContextMemoryStorage</td>
+<td>ContextStorage</td>
+</tr>
+<tr>
+<td>iotsear:pbms:directory-based-policy-repository</td>
+<td>DirectoryBasedPolicyRepository</td>
+<td>PolicyRepository</td>
+</tr>
+<tr>
+<td>iotsear:pbms:localPDP</td>
+<td>LocalPDP</td>
+<td>PDP</td>
+</tr>
+<tr>
+<td>iotsear:pbms:mqttReceiver</td>
+<td>MqttContextHandler</td>
+<td>ContextHandler</td>
+</tr>
+</tbody>
+</table>
+<p>If you want to create your own plugins, it is as simple as:</p>
+<ol>
+<li>Creating a new class</li>
+<li>Annoting the class with the '@Extension' annotation</li>
+<li>implement/extend the ExtensionPoints</li>
+<li>use the new identifiers in the policies/config file</li>
+</ol>
+<p>!IMPORTANT!, make sure that &quot;annotation processing&quot; compiler setting is enabled in your IDE, this is usually disabled by default...</p>
+<p>see https://github.com/pf4j/pf4j for more info</p>
+<p>example:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> be.distrinet.spite.iotsear.core.model.context.ContextAttribute;
+<span class="hljs-keyword">import</span> be.distrinet.spite.iotsear.policy.PolicyConditionVerifier;
+<span class="hljs-keyword">import</span> be.distrinet.spite.iotsear.policy.abstractFactories.PolicyConditionVerifierFactory;
+<span class="hljs-keyword">import</span> org.pf4j.Extension;
+
+<span class="hljs-meta">@Extension</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HighSecurityVerifier</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">PolicyConditionVerifier</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PolicyConditionVerifierFactory</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">verify</span><span class="hljs-params">(ContextAttribute contextAttribute)</span> </span>{
+<span class="hljs-comment">// cusom code to verify the elegibility of a context attribute goes here</span>
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> PolicyConditionVerifier <span class="hljs-title">createPolicyConditionVerifier</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HighSecurityVerifier();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getProviderID</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"darc:condition:verifier:security:high"</span>;
+    }
+}
+
+</div></code></pre>
+<h2 id="logging">Logging</h2>
+<p>IoTSEAR uses the flogger API for its logging https://github.com/google/flogger</p>
+<p>IoTSEAR logs every extension that is loaded. You can verify whether or not IoTSEAR loads your custom extension by inspecting these logs.<br>
+In addition, the MqttContextHandler logs context that it receives, and the PolicyEngine logs the policies that are satisfied. Finally, errors and unexpected events are also logged.</p>
+<p>You can also use flogger by including all the IoTSEAR dependencies to your project. The usage is straightforward:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//static field declaration, put this at the top of the class in which you want to log something</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> FluentLogger logger = FluentLogger.forEnclosingClass();
+
+
+<span class="hljs-comment">//usage</span>
+<span class="hljs-keyword">this</span>.logger.atInfo().log(<span class="hljs-string">"initializing with config: \n"</span> + config.toJSONString());
+<span class="hljs-comment">//logging exceptions</span>
+<span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> MqttException e) {
+    logger.atSevere().withCause(e).log(<span class="hljs-string">"mqtt exception, is the broker running?"</span>);
+}
+</div></code></pre>
+
+</body>
+</html>

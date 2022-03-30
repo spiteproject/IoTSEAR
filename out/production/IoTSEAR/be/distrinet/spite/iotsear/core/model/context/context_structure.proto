@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+package contextstructure;
+
+option java_package = "be.distrinet.spite.iotsear.core.model.context";
+option java_outer_classname = "ContextStructure";
+
+message ContextBuffer {
+  required string attributeName = 1;
+  required string value = 2;
+
+  message MetaData {
+    required string type = 1;
+    required string value = 2;
+  }
+
+  repeated MetaData attributeMetadata = 3;
+
+  message Proof {
+    required string type = 1;
+    required string proof = 2;
+  }
+
+  message Subject {
+    required string identifier = 1;
+    optional Proof proof = 2;
+  }
+  optional string source = 4;
+  optional Subject subject = 5;
+  repeated Proof proof = 6;
+}

@@ -1,0 +1,65 @@
+{
+  "pbms": {
+    "repository": {
+      "provider": "iotsear:pbms:directory-based-policy-repository",
+      "path": "./testPolicies/",
+      "cache": false,
+      "parser": "iotsear:pbms:darcJsonParser"
+    },
+    "pdp": "iotsear:pbms:localPDP",
+    "context-persistence": {
+      "provider": "iotsear:context:store:memory"
+    }
+  },
+  "gateway": {
+    "proof-generation": {
+      "provider": "sha256withRSA2048",
+      "key": "./privatekey.pem"
+    }
+  },
+  "sources": [
+    {
+      "provider": "sources:mock",
+      "identifier": "myProximitySensor",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/proximity",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "presence",
+        "proofSupport": [
+          "iotsear:crypto:hash:sha256",
+          "iotsear:crypto:sign:rsa2048"
+        ]
+      }
+    },
+    {
+      "provider": "sources:mock",
+      "identifier": "myDoorbell",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/doorbell",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "presence"
+      }
+    },
+    {
+      "provider": "sources:mock",
+      "identifier": "myLightSensor",
+      "contextHandler": {
+        "provider": "iotsear:pbms:mqttReceiver",
+        "topic": "myApp/light",
+        "broker": "tcp://localhost:1883",
+        "decoder": "iotsear:context:encoders:string-encoder-decoder"
+      },
+      "metadata": {
+        "contextType": "light"
+      }
+    }
+  ]
+}
